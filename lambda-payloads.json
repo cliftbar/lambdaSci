@@ -1,0 +1,24 @@
+{
+    "": {
+        "apigateway": {
+            "path": "",
+            "method": {
+                "value": "",
+                "items": []
+            },
+            "body": {}
+        }
+    },
+    "HaversineDtoM": {
+        "apigateway": {
+            "path": "/haversineDtoM",
+            "method": {
+                "value": "GET",
+                "items": [
+                    "GET"
+                ]
+            },
+            "queryString": "lat1=50.5&lat2=58.5&lon1=3.6&lon2=3.4"
+        }
+    }
+}

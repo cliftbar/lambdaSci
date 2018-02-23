@@ -28,3 +28,19 @@ Resources:
           Properties:
             Path: /
             Method: post
+            
+  HaversineDtoM:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: haversineDtoM.handler
+      Runtime: python3.6
+      Role:
+        Fn::ImportValue:
+          !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /haversineDtoM
+            Method: get
+
