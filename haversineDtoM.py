@@ -33,8 +33,8 @@ def handler(event, context):
     d = haversineDegreesToMeters(lat1, lon1, lat2, lon2)
     
     data = {
-        'distance': d,
-        'event': format(event)
+        'distance': d
+        #,'event': format(event)
     }
     return {'statusCode': 200,
             'body': json.dumps(data),
