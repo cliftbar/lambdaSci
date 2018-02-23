@@ -24,15 +24,27 @@
     },
     "Haversine": {
         "apigateway": {
-            "path": "/haversine/kilometers",
+            "path": "/haversine",
             "method": {
                 "value": "GET",
                 "items": [
                     "GET"
                 ]
             },
-            "queryString": "lat1=50.5&lat2=58.5&lon1=3.4&lon2=3.6"
+            "queryString": "\n"
         },
         "lambda": {}
+    },
+    "HaversineUnits": {
+        "apigateway": {
+            "path": "/haversine/api",
+            "method": {
+                "value": "GET",
+                "items": [
+                    "GET"
+                ]
+            },
+            "queryString": "\n"
+        }
     }
 }

@@ -77,4 +77,43 @@ def handler(event, context):
             
             }
     return ret
-            
+    
+def apihelphandler(event, context):
+    #ret = {}
+    #try:
+    data = {
+        '/haversine': {
+            'queryString': {
+                'lat1': 'first point latitude'
+                ,'lon1': 'first point longitude'
+                ,'lat2': 'second point latitude'
+                ,'lon2': 'second point longitude'
+            }
+            ,'return': 'distance from point 1 to point 2 in meters'
+        }
+        ,'/haversine/{unit}': {
+            'queryString': {
+                'lat1': 'first point latitude'
+                ,'lon1': 'first point longitude'
+                ,'lat2': 'second point latitude'
+                ,'lon2': 'second point longitude'
+                ,'description': 'lat and lon for points 1 and 2'
+            }
+            ,'path param "{unit}': {
+                'options': ['meters', 'kilometers', 'miles']
+                ,'description': 'return unit of distance'
+            }
+            ,'returns': 'distance and unit from point 1 to point 2'
+        }
+        ,'haversine/api': 'api information'
+    }
+    ret = {'statusCode': 200,
+            'body': json.dumps(data),
+            'headers': {'Content-Type': 'application/json'}
+    }
+    # except Exception as e:
+    #     ret = {'statusCode': 500,
+    #             'body': 'error: ' + str(e)
+    #             'headers': {'Content-Type': 'application/json'}
+    #     }
+    return ret
