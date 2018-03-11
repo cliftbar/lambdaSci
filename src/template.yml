@@ -23,16 +23,26 @@ Resources:
           Properties:
             Path: /
             Method: get
-        PostEvent:
-          Type: Api
-          Properties:
-            Path: /
-            Method: post
             
   Haversine:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: haversineDtoM.handler
+      Handler: haversine.handler
+      Runtime: python3.6
+      Role:
+        Fn::ImportValue:
+          !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
+      Events:
+        PostEvent:
+          Type: Api
+          Properties:
+            Path: /haversine
+            Method: post
+    
+  HaversineUnits:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: haversine.handler
       Runtime: python3.6
       Role:
         Fn::ImportValue:
@@ -42,26 +52,11 @@ Resources:
           Type: Api
           Properties:
             Path: /haversine
-            Method: get
-    
-  HaversineUnits:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: haversineDtoM.handler
-      Runtime: python3.6
-      Role:
-        Fn::ImportValue:
-          !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
-      Events:
-        GetEvent:
-          Type: Api
-          Properties:
-            Path: /haversine/{unit}
-            Method: get
+            Method: post
   HaversineApiHelp:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: haversineDtoM.apihelphandler
+      Handler: haversine.apihelphandler
       Runtime: python3.6
       Role:
         Fn::ImportValue:
