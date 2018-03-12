@@ -8,11 +8,13 @@ payload = {
     ,'lon2': 3.4
     ,'unit': 'kilometers'
 }
-url = 'http://localhost:3000/haversine'
+local_url = 'http://localhost:3000/haversine'
+#live_url = 'https://0hed7331f9.execute-api.us-east-1.amazonaws.com/Prod/haversine'
 
 #req = requests.get(url, json=payload)
 #req = requests.get(url)
-req = requests.post(url, json=payload)
+#req = requests.post(live_url, json=payload)
+req = requests.post(local_url, json=payload)
 
 print(req.status_code)
 if req.status_code == 200:

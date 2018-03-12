@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  Haversine:
+    Properties:
+      CodeUri: s3://lambdascideploy/a3cc8369173aebd0e4cb1d8d898b49ae
+      Events:
+        PostEvent:
+          Properties:
+            Method: post
+            Path: /haversine
+          Type: Api
+      Handler: haversine.handler
+      Runtime: python3.6
+    Type: AWS::Serverless::Function
+  HaversineApiHelp:
+    Properties:
+      CodeUri: s3://lambdascideploy/a3cc8369173aebd0e4cb1d8d898b49ae
+      Events:
+        GetEvent:
+          Properties:
+            Method: get
+            Path: /haversine/api
+          Type: Api
+      Handler: haversine.apihelphandler
+      Runtime: python3.6
+    Type: AWS::Serverless::Function
+  HelloWorld:
+    Properties:
+      CodeUri: s3://lambdascideploy/a3cc8369173aebd0e4cb1d8d898b49ae
+      Events:
+        GetEvent:
+          Properties:
+            Method: get
+            Path: /
+          Type: Api
+      Handler: index.handler
+      Runtime: python3.6
+    Type: AWS::Serverless::Function
+Transform:
+- AWS::Serverless-2016-10-31

@@ -1,12 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 Transform:
 - AWS::Serverless-2016-10-31
-- AWS::CodeStar
-
-Parameters:
-  ProjectId:
-    Type: String
-    Description: CodeStar projectId used to associate new resources to team members
 
 Resources:
   HelloWorld:
@@ -14,9 +8,6 @@ Resources:
     Properties:
       Handler: index.handler
       Runtime: python3.6
-      Role:
-        Fn::ImportValue:
-          !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
       Events:
         GetEvent:
           Type: Api
@@ -29,26 +20,8 @@ Resources:
     Properties:
       Handler: haversine.handler
       Runtime: python3.6
-      Role:
-        Fn::ImportValue:
-          !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
       Events:
         PostEvent:
-          Type: Api
-          Properties:
-            Path: /haversine
-            Method: post
-    
-  HaversineUnits:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: haversine.handler
-      Runtime: python3.6
-      Role:
-        Fn::ImportValue:
-          !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
-      Events:
-        GetEvent:
           Type: Api
           Properties:
             Path: /haversine
@@ -58,9 +31,6 @@ Resources:
     Properties:
       Handler: haversine.apihelphandler
       Runtime: python3.6
-      Role:
-        Fn::ImportValue:
-          !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
       Events:
         GetEvent:
           Type: Api
