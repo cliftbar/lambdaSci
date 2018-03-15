@@ -36,10 +36,10 @@ def handler(event, context):
     try:
         try:
             payload = json.loads(event['body'])
-            lat1 = float(payload['lat1'])
-            lat2 = float(payload['lat2'])
-            lon1 = float(payload['lon1'])
-            lon2 = float(payload['lon2'])
+            lat1 = payload['lat1']
+            lat2 = payload['lat2']
+            lon1 = payload['lon1']
+            lon2 = payload['lon2']
         except Exception as e:
             raise Exception("Invalid json payload: " + str(e))
         

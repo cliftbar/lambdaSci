@@ -14,7 +14,7 @@ Resources:
           Properties:
             Path: /
             Method: get
-            
+  # Haversine
   Haversine:
     Type: AWS::Serverless::Function
     Properties:
@@ -37,4 +37,28 @@ Resources:
           Properties:
             Path: /haversine/api
             Method: get
-  
+  # Interpolation
+  LinearInterpolation:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: interpolation.linearHandler
+      Runtime: python3.6
+      CodeUri: 'analysis/'
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /interpolation/linear
+            Method: post
+  LinearInterpolationApi:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: interpolation.linearApiHelp
+      Runtime: python3.6
+      CodeUri: 'analysis/'
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /interpolation/linear/api
+            Method: get

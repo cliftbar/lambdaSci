@@ -2,7 +2,7 @@ AWSTemplateFormatVersion: 2010-09-09
 Resources:
   Haversine:
     Properties:
-      CodeUri: s3://lambdascideploy/a3cc8369173aebd0e4cb1d8d898b49ae
+      CodeUri: s3://lambdascideploy/b7ecedd117bfa7fd5c726be6c2f88ad7
       Events:
         PostEvent:
           Properties:
@@ -14,7 +14,7 @@ Resources:
     Type: AWS::Serverless::Function
   HaversineApiHelp:
     Properties:
-      CodeUri: s3://lambdascideploy/a3cc8369173aebd0e4cb1d8d898b49ae
+      CodeUri: s3://lambdascideploy/b7ecedd117bfa7fd5c726be6c2f88ad7
       Events:
         GetEvent:
           Properties:
@@ -26,7 +26,7 @@ Resources:
     Type: AWS::Serverless::Function
   HelloWorld:
     Properties:
-      CodeUri: s3://lambdascideploy/a3cc8369173aebd0e4cb1d8d898b49ae
+      CodeUri: s3://lambdascideploy/b7ecedd117bfa7fd5c726be6c2f88ad7
       Events:
         GetEvent:
           Properties:
@@ -34,6 +34,30 @@ Resources:
             Path: /
           Type: Api
       Handler: index.handler
+      Runtime: python3.6
+    Type: AWS::Serverless::Function
+  LinearInterpolation:
+    Properties:
+      CodeUri: s3://lambdascideploy/e983a61b988439e4b7a6244ef2e8420d
+      Events:
+        GetEvent:
+          Properties:
+            Method: post
+            Path: /interpolation/linear
+          Type: Api
+      Handler: interpolation.linearHandler
+      Runtime: python3.6
+    Type: AWS::Serverless::Function
+  LinearInterpolationApi:
+    Properties:
+      CodeUri: s3://lambdascideploy/e983a61b988439e4b7a6244ef2e8420d
+      Events:
+        GetEvent:
+          Properties:
+            Method: get
+            Path: /interpolation/linear/api
+          Type: Api
+      Handler: interpolation.linearApiHelp
       Runtime: python3.6
     Type: AWS::Serverless::Function
 Transform:
